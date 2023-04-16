@@ -143,37 +143,9 @@ class EditSettingDoctor extends StatelessWidget {
                   CustomRowEditSetting(
                     hintText: doctorProfileModel.cvv,
                     myController: controller.phone,
-                    text: 'Card Number'.tr,
+                    text: 'Zain Wallet'.tr,
                     isNumber: true,
                   ),
-                  CustomRowEditSetting(
-                    hintText: doctorProfileModel.exp,
-                    myController: controller.exp,
-                    text: 'Exp Date'.tr,
-                    isNumber: true,
-                    isIcon: true,
-                    iconData: Icons.date_range, onTap: ()async{
-                    var date = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(1900),
-                      lastDate: DateTime(2100),
-                      builder: (context, child) {
-                        return Theme(
-                          data: Theme.of(context).copyWith(
-                            colorScheme: const ColorScheme.light(
-                              primary: AppColor.primaryColor,
-                            ),
-                          ),
-                          child: child!,
-                        );
-                      },
-                    );
-                    controller.exp.text = date.toString().substring(0, 10);
-                     controller.update();
-                  },
-                  ),
-
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20),
                     child: CustomButton(text: 'Save'.tr, onTap: () { controller.updateProfile(doctorProfileModel.fullName,doctorProfileModel.phone, doctorProfileModel.specialization, doctorProfileModel.exp, doctorProfileModel.cvv,  ); },),

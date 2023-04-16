@@ -9,19 +9,19 @@ import '../../../controller/doctor/doctorinterviewscontroller.dart';
 import '../widget/customlistwaitingcompany.dart';
 import 'finalinterviews.dart';
 
-
 class WaitingListDoctor extends GetView<DoctorInterviewsController> {
   const WaitingListDoctor({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+  Get.put(DoctorInterviewsController());
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
           leading: InkWell(
-            onTap: (){
-              Get.to(()=> const FinalInterviewsScreen());
+            onTap: () {
+              Get.to(() => const FinalInterviewsScreen());
             },
             child: Padding(
               padding: const EdgeInsets.all(13.0),
@@ -36,38 +36,31 @@ class WaitingListDoctor extends GetView<DoctorInterviewsController> {
           title: Text(
             'Waiting List'.tr,
             style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 20),
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
           ),
           centerTitle: true,
+          actions: [
+            Center(
+              child: GetBuilder<DoctorInterviewsController>(
+                builder: (control) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      controller.interviewSalesMan.length.toString(),
+                      style: TextStyle(color: AppColor.black,fontSize: 20),
+                    ),
+                  );
+                }
+              ),
+            ),
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              // InkWell(
-              //   onTap: (){
-              //     Get.to(()=> const NotificationsDoctorScreen());
-              //   },
-              //   child: Padding(
-              //     padding: const EdgeInsets.all(20.0),
-              //     child: Container(
-              //       width: 45,
-              //       height: 45,
-              //       decoration: const BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: AppColor.secondaryColor),
-              //       child: const Icon(Icons.notifications,
-              //       color: AppColor.black,size: 30,),
-              //     ),
-              //   ),
-              // ),
-              // CustomWaitingList(),
-               CustomListWaitingCompany()
-            ],
+            children: const [CustomListWaitingCompany()],
           ),
         ),
       ),

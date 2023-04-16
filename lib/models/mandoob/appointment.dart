@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Appointment {
@@ -21,8 +22,16 @@ class Appointment {
 
   Appointment.fromJson(dynamic json) {
     appointmentId = json['appointment_id'];
-    time = json['time'];
-    duration = json['duration'];
+    String tmp = json['time'];
+    time = json['time'].toString().characters.first + json['time'].toString().characters.elementAt(1);
+    int checker = int.parse(time);
+    if (checker > 12) {
+      checker = checker - 12;
+      time = checker.toString() + ' pm';
+    } else {
+      time = time + ' am';
+    }
+    duration = json['duration'].toString().characters.elementAt(3) + json['duration'].toString().characters.elementAt(4);
     price = json['price'];
     kindOfVisite = json['kind_of_visite'];
     day = json['day'];

@@ -13,11 +13,11 @@ class ListWaitingDetailsDoctor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void launchWhatsApp() async {
+    void launchWhatsApp(String number) async {
       final Uri whatsappLaunchUri = Uri(
         scheme: 'https',
         host: 'wa.me',
-        path: '/9647822283347/',
+        path: '/$number/',
         query: 'com.whatsapp',
       );
       await launchUrl(whatsappLaunchUri,mode: LaunchMode.externalApplication);
@@ -92,7 +92,7 @@ class ListWaitingDetailsDoctor extends StatelessWidget {
             ),
             InkWell(
               onTap: (){
-                launchWhatsApp();
+                launchWhatsApp(dataInterviewSalesMan.phone);
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),

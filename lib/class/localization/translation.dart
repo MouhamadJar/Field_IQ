@@ -79,8 +79,10 @@ class MyTranslation extends Translations{
       "Clinic Certificate is required" : 'اجازة فتح العيادة مطلوبة',
       "Your Request is Processing" : 'طلبك قيد المعالجة',
       'Phone or Password are incorrect ' : 'رقم الهاتف او كلمة السر غير صحيحة',
-      "Your Profile has een updated" : 'الصفحة الشخصية لقد تم تعديلها'
-
+      "Your Profile has een updated" : 'الصفحة الشخصية لقد تم تعديلها',
+      'Start Meets' : 'بدأ المقابلات',
+      'Start' : 'بدأ',
+      'Zain Wallet' : 'محفظة زين',
     },
     'en' : {
       'SellsMan' : 'SellsMan',
@@ -159,9 +161,10 @@ class MyTranslation extends Translations{
       "Clinic Certificate is required" : "Clinic Certificate is required",
       "Your Request is Processing" : "Your Request is Processing",
       'Phone or Password are incorrect ' : 'Phone or Password are incorrect ',
-      "Your Profile has een updated" : "Your Profile has een updated"
-
-
+      "Your Profile has een updated" : "Your Profile has een updated",
+      'Start Meets' : 'Start Meets',
+      'Start' : 'Start' ,
+      'Zain Wallet' : 'Zain Wallet',
     },
     'ku':  {
       'search for doctor\'s name': 'گه ران له سه ر ناوى دكتور',
@@ -202,6 +205,9 @@ class MyTranslation extends Translations{
       'Language': 'زمانى',
       'Doctor is Available': 'الدكتور متاح',
       'Doctor is not Available': 'الدكتور غير متاح',
+      'Start Meets' : 'Start Meets',
+      'Start' : 'Start',
+      'Zain Wallet' : 'Zain Wallet',
     }
   };
 }

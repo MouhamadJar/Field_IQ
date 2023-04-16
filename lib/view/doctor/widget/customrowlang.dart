@@ -22,64 +22,63 @@ class CustomRowLang extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
               'Language'.tr,
-              style: const TextStyle(
-                  fontSize: 14, color: Colors.black),
+              style: const TextStyle(fontSize: 14, color: Colors.black),
             ),
           ),
           const Spacer(),
           Obx(() => DropdownButtonHideUnderline(
-            child: DropdownButton2(
-              isExpanded: true,
-              style: const TextStyle(
-                color: AppColor.black,
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-              ),
-              customButton: Container(
-                height: 40,
-                width: 228,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: AppColor.primaryColor,
-                    width: 1,
+                child: DropdownButton2(
+                  isExpanded: true,
+                  style: const TextStyle(
+                    color: AppColor.black,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
                   ),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(5),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Text(
-                        controller.typeSelectedLang.value ?? "",
+                  customButton: Container(
+                    height: 40,
+                    width: 228,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: AppColor.primaryColor,
+                        width: 1,
+                      ),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(5),
                       ),
                     ),
-                    const Icon(Icons.arrow_drop_down,
-                      color: AppColor.primaryColor,
-                      size: 16,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
+                            controller.typeSelectedLang.value ?? "",
+                          ),
+                        ),
+                        const Icon(
+                          Icons.arrow_drop_down,
+                          color: AppColor.primaryColor,
+                          size: 16,
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
+                  items: controller.lang.map((item) {
+                    return DropdownMenuItem(
+                      value: item,
+                      alignment: Alignment.center,
+                      child: Text(item),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    controller.setSelectedLang(value.toString());
+                  },
                 ),
-              ),
-              items: controller.lang.map((item) {
-                return DropdownMenuItem(
-                  value: item,
-                  alignment: Alignment.center,
-                  child: Text(item),
-                );
-              }).toList(),
-              onChanged: (value) {
-                controller.setSelectedLang(value.toString());
-              },
-            ),
-          ))
+              ))
         ],
       ),
     );
   }
 }
-
 
 class SettingsLanguageChanger extends StatelessWidget {
   const SettingsLanguageChanger({Key? key}) : super(key: key);
@@ -93,13 +92,15 @@ class SettingsLanguageChanger extends StatelessWidget {
         children: [
           Container(
             decoration: const ShapeDecoration(
-              shape:  CircleBorder(),
+              shape: CircleBorder(),
               color: AppColor.secondaryColor,
             ),
             height: 8,
             width: 8,
           ),
-          const SizedBox(width: 10,),
+          const SizedBox(
+            width: 10,
+          ),
           Text('Language'.tr),
           const Spacer(),
           DropdownButtonHideUnderline(
@@ -130,7 +131,8 @@ class SettingsLanguageChanger extends StatelessWidget {
                         kLanguage,
                       ),
                     ),
-                    const Icon(Icons.arrow_drop_down,
+                    const Icon(
+                      Icons.arrow_drop_down,
                       color: AppColor.secondaryColor,
                       size: 16,
                     ),
@@ -152,6 +154,42 @@ class SettingsLanguageChanger extends StatelessWidget {
                 print(kLanguage);
               },
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SettingsStartMeets extends StatelessWidget {
+  const SettingsStartMeets({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    ReservationsController controller = Get.put(ReservationsController());
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 15),
+      child: Row(
+        children: [
+          Container(
+            decoration: const ShapeDecoration(
+              shape: CircleBorder(),
+              color: AppColor.secondaryColor,
+            ),
+            height: 8,
+            width: 8,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Text('Start Meets'.tr),
+          const Spacer(),
+          ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(AppColor.secondaryColor)
+            ),
+            onPressed: () {},
+            child: Text('Start'),
           ),
         ],
       ),

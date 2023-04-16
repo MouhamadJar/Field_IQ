@@ -141,10 +141,9 @@ class SettingsDoctor extends GetView<SettingPageDoctorController> {
                 urlImage: controller.profileModel.image,
               ),
               CustomWaitingListDetails(
-                  text: 'Card Number'.tr, info: controller.profileModel.cvv),
-              CustomWaitingListDetails(
-                  text: 'Exp Date'.tr, info: controller.profileModel.exp),
+                  text: 'Zain Wallet'.tr, info: controller.profileModel.cvv),
               const SettingsLanguageChanger(),
+              SettingsStartMeets(),
               const SizedBox(
                 height: 50,
               )

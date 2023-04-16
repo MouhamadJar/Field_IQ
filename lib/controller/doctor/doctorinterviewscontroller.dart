@@ -17,7 +17,6 @@ class DoctorInterviewsController extends GetxController  with StateMixin<dynamic
   List<DataInterviewSalesMan> interviewSalesMan = [];
 
   var timeSelected = TimeOfDay.now().obs;
-  //String time= timeSelected.value.toString();
   void setSelected(String value){
     typeSelected.value =  value ;
   }
