@@ -13,9 +13,9 @@ void main() async {
     statusBarColor: Colors.white,
     systemNavigationBarDividerColor: Colors.white,
     statusBarIconBrightness: Brightness.dark,
-    ),
+  ),
   );
-  // await initFireBase();
+  await initFireBase();
   runApp(MyApp());
 }
 

@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:mandoob/class/constant/end_points.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../class/component.dart';
 import '../../../../class/constant/colors.dart';
@@ -14,6 +15,7 @@ class HomeMainPage extends GetView<HomeScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    print(kToken);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: Get.width * .02),
       child: SingleChildScrollView(
@@ -106,12 +108,10 @@ class HomeMainPage extends GetView<HomeScreenController> {
                                 newCity: newCity,
                                 index: i,
                               );
+                              print(newCity.id.toString());
                             }
                           }
                         },
-                        // buttonHeight: 40,
-                        // buttonWidth: 140,
-                        // itemHeight: 40,
                       ),
                     ),
                     onLoading: Shimmer.fromColors(

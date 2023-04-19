@@ -83,6 +83,7 @@ class MyTranslation extends Translations{
       'Start Meets' : 'بدأ المقابلات',
       'Start' : 'بدأ',
       'Zain Wallet' : 'محفظة زين',
+      'Max Visit per Day' : 'عدد الزيارات الاقصى المسموحة'
     },
     'en' : {
       'SellsMan' : 'SellsMan',
@@ -117,6 +118,7 @@ class MyTranslation extends Translations{
       'Meeting Reservation': 'Meeting Reservation',
       'Phone Number': 'Phone Number',
       'Receiving Method': 'Receiving Method',
+
       'CVV': 'CVV',
       'Fees': 'Fees',
       'day': 'day',
@@ -165,6 +167,7 @@ class MyTranslation extends Translations{
       'Start Meets' : 'Start Meets',
       'Start' : 'Start' ,
       'Zain Wallet' : 'Zain Wallet',
+      'Max Visit per Day' : 'Max Visit per Day'
     },
     'ku':  {
       'search for doctor\'s name': 'گه ران له سه ر ناوى دكتور',
@@ -208,6 +211,7 @@ class MyTranslation extends Translations{
       'Start Meets' : 'Start Meets',
       'Start' : 'Start',
       'Zain Wallet' : 'Zain Wallet',
+      'Max Visit per Day' : 'Max Visit per Day'
     }
   };
 }

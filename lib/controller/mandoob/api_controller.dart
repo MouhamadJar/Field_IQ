@@ -211,7 +211,7 @@ class DioHelper {
     );
   }
 
-  Future<Response> sendNotification({
+  Future<Response> sendNotificationForDoctors({
     required String doctorId,
     required String doctorName,
     required String reserveDay,
@@ -245,5 +245,38 @@ class DioHelper {
         }
       }
     });
+  }
+
+  Future<Response> sendNotificationForSellsMens({
+    required String sellManName,
+  }) async {
+    return Dio(
+      BaseOptions(
+          baseUrl: 'https://fcm.googleapis.com/fcm',
+          receiveDataWhenStatusError: true,
+          headers: {
+            "Authorization":
+            "key=AAAAaf6_eww:APA91bGK1fqQHMKxWg8gxVnRlK3QmUesxITwKR_xkQaqfF3odfRqt2piOexm31j01DQGMyZEhGpsh2pjNB2Qd25d3QXVhun08eDipS3_2cE22hZgWWyKQaNRoUmqnCNr8aiUcIBZDZR9",
+            "Content-type": "application/json; charset=UTF-8",
+          }),
+    ).post(
+        '/send',
+        data: {
+          "to": "/topics/$sellManName",
+          "notification": {
+            "title": sellManName,
+            "body": "يمكنك الان القيام بمقابلتك عبر الانترنت",
+            "sound": "default"
+          },
+          "android": {
+            "priority": "HIGH",
+            "notification": {
+              "notification_priority": "PRIORITY_MAX",
+              "sound": "default",
+              "default_sound": true,
+              "default_vibrate_timings": true
+            }
+          }
+        });
   }
 }

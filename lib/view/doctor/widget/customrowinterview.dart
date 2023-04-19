@@ -24,9 +24,11 @@ class CustomRowInterview extends StatelessWidget {
         this.obscureText,
         required this.text,
         this.isIcon, this.isNumber,
-        this.onTap,  this.iconColor})
+        this.onTap,  this.iconColor,
+        this.isDuration = false ,
+      })
       : super(key: key);
-
+  final bool isDuration;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -52,7 +54,17 @@ class CustomRowInterview extends StatelessWidget {
               isNumber == true ? TextInputType.number : TextInputType.text,
               obscureText:
               obscureText == null || obscureText == false ? false : true,
+              onChanged: (val){
+                if(isDuration){
+                  int tmp = int.parse(val);
+                  if(tmp>60){
+                    tmp = 60 ;
+                    myController.text = tmp . toString();
+                  }
+                }
+              },
               decoration: InputDecoration(
+                  counterText: isDuration ? 'Duration should be 1-60 min': null,
                   isDense: true,
                   contentPadding:
                   const  EdgeInsets.symmetric(vertical: 10, horizontal: 8),

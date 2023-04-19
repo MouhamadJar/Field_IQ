@@ -45,7 +45,7 @@ class AddInterviewDoctor extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 52.0),
                           child: Center(
                             child: Text(
-                              'Saturday'.tr,
+                              days.name.tr,
                               style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
@@ -67,9 +67,10 @@ class AddInterviewDoctor extends StatelessWidget {
                             }
                           },
                         ),
-                        CustomRowInterview(hintText: 'Duration'.tr, myController: controller.duration, text: 'Duration'.tr,),
+                        CustomRowInterview(hintText: 'Duration'.tr, myController: controller.duration, text: 'Duration'.tr,isDuration: true,isNumber: true,),
                         const CustomRowInterviewType(),
                         CustomRowInterview(hintText: 'Charges'.tr, myController: controller.charges, text: 'Charges'.tr, isNumber: true,),
+                        CustomRowInterview(hintText: 'Max Visit per Day'.tr, myController: controller.maxVisit, text: 'Max Visit per Day'.tr, isNumber: true,),
                        // CustomRowInterview(hintText: 'Sellsmen Number'.tr, myController: controller.sellsmenNumber, text: 'Sellsmen Number'.tr, isNumber: true,),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),

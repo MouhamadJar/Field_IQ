@@ -54,8 +54,9 @@ class ReserveController extends GetxController with StateMixin {
             doctorId: doctorId, appointmentTimeId: appointmentTimeId)
         .then(
             (resp) => {
+              print(resp.data.toString()),
                   DioHelper()
-                      .sendNotification(
+                      .sendNotificationForDoctors(
                     doctorName: doctorName,
                           doctorId: doctorId.toString(),
                           reserveDay: reserveDay,

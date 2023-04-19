@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,18 +35,21 @@ class HomeScreenController extends GetxController with StateMixin<dynamic> {
     cityId.value = newCity.id;
     cityIndex.value = index;
     change('newState', status: RxStatus.loading());
-    loadingData();
+    loadingData(id: newCity.id);
   }
 
-  Future<void> loadingData() async {
+  Future<void> loadingData({int id =  0,bool isFirst = false}) async {
     if (cities.isEmpty) {
       await SearchController().getSearchData();
       cityId.value = cities.first.id;
+      id = cityId.value;
     } else {
-      cityId.value = cities.first.id;
-    }
-    apiController.getDoctorsByCity(data: {'city_id': cityId.value}).then(
+      isFirst ? cityId.value = cities.first.id: null;
+      }
+    print(cityId.value.toString());
+    apiController.getDoctorsByCity(data: {'city_id': id}).then(
         (value) {
+          print(value.data.toString());
       doctors.clear();
       value.data['data'].forEach((doctor) {
         doctors.add(DoctorModel.fromJson(doctor));
@@ -62,11 +66,14 @@ class HomeScreenController extends GetxController with StateMixin<dynamic> {
   }
 
   Future<dynamic> loadProfileData() async {
-    DioHelper().getProfile().then((value) {
+    DioHelper().getProfile().then((value) async {
       print(value.toString());
       user = SellManModel.fromJson(value.data['data'][0]);
       print('user data done');
-    });
+      await FirebaseMessaging.instance.subscribeToTopic(user.name).then((value) {
+        print('done');
+      });
+      });
   }
 
   void searchForDoctor(String query) {
@@ -85,7 +92,7 @@ class HomeScreenController extends GetxController with StateMixin<dynamic> {
   @override
   void onInit() {
     super.onInit();
-    loadingData();
+    loadingData(isFirst: true);
     loadProfileData();
   }
 }

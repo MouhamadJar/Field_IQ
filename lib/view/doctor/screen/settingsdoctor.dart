@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
+import 'package:mandoob/class/constant/const.dart';
 import 'package:mandoob/class/dio.dart';
 import 'package:mandoob/class/services/services.dart';
 import 'package:mandoob/controller/doctor/settingpagedoctorcontroller.dart';
@@ -39,6 +40,7 @@ class SettingsDoctor extends GetView<SettingPageDoctorController> {
                 );
                 await FirebaseMessaging.instance.unsubscribeFromTopic(
                     controller.profileModel.id.toString());
+                kDoctorToken = 'noToken';
                 Get.offAll(() => const ChooseUser());
               },
             )

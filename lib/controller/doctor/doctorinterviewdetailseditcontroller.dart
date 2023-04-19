@@ -24,6 +24,7 @@ class DoctorInterviewDetailsEditController extends GetxController{
     print(timeModel.toString());
     print(durationModel.toString());
     print(chargesModel.toString());
+    print(typeSelected.value.toString());
     print(idDay);
     print(idApp);
       DioHelper.editInterviewDoctor(data: {

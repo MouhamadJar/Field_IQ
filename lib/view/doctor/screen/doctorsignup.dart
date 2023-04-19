@@ -133,34 +133,8 @@ class DoctorSignUp extends StatelessWidget {
                       ),
                     ),
                     CustomRowLoginCard(
-                      text: 'Card Number'.tr,
+                      text: 'Zain Wallet'.tr,
                       myController: controller.cardNumber,
-                    ),
-                    CustomRowLoginCard(
-                      text: 'Exp Date'.tr,
-                      myController: controller.exp,
-                      isIcon: true,
-                      iconData: Icons.date_range,
-                      onTap: () async {
-                        var date = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime.now(),
-                          lastDate: DateTime(2100),
-                          builder: (context, child) {
-                            return Theme(
-                              data: Theme.of(context).copyWith(
-                                colorScheme: const ColorScheme.light(
-                                  primary: AppColor.primaryColor,
-                                ),
-                              ),
-                              child: child!,
-                            );
-                          },
-                        );
-                        controller.exp.text = date.toString().substring(0, 10);
-                        controller.update();
-                      },
                     ),
                     const CustomRowLang(),
                     Padding(

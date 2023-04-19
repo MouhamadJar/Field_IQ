@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mandoob/class/constant/colors.dart';
 import 'package:mandoob/class/constant/const.dart';
 import 'package:mandoob/class/services/services.dart';
-import 'package:mandoob/view/doctor/screen/doctorlogin.dart';
 import 'package:mandoob/view/doctor/screen/doctorsignup.dart';
 import 'package:mandoob/view/mandoob/screen/mandoobsignup.dart';
 import 'package:mandoob/view/widget/customcontainer.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../class/constant/end_points.dart';
 import '../class/constant/images.dart';
 import 'doctor/screen/homescreen.dart';

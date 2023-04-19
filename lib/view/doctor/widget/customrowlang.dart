@@ -1,9 +1,10 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:mandoob/controller/mandoob/api_controller.dart' as dio;
 import '../../../class/constant/colors.dart';
 import '../../../class/constant/const.dart';
+import '../../../class/dio.dart';
 import '../../../class/services/services.dart';
 import '../../../controller/doctor/doctorsignupcontroller.dart';
 import '../../../controller/mandoob/doctor_reservations_controller.dart';
@@ -161,12 +162,20 @@ class SettingsLanguageChanger extends StatelessWidget {
   }
 }
 
-class SettingsStartMeets extends StatelessWidget {
+class SettingsStartMeets extends StatefulWidget {
   const SettingsStartMeets({Key? key}) : super(key: key);
+
+  @override
+  State<SettingsStartMeets> createState() => _SettingsStartMeetsState();
+}
+
+class _SettingsStartMeetsState extends State<SettingsStartMeets> {
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     ReservationsController controller = Get.put(ReservationsController());
+    List<String> names =[];
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 15),
       child: Row(
@@ -186,10 +195,31 @@ class SettingsStartMeets extends StatelessWidget {
           const Spacer(),
           ElevatedButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(AppColor.secondaryColor)
-            ),
-            onPressed: () {},
-            child: Text('Start'),
+                backgroundColor:
+                    MaterialStateProperty.all(AppColor.secondaryColor)),
+            onPressed: () {
+              setState(() {
+                isLoading = true;
+                MyServices myServices = Get.find();
+                DioHelper.getInterviewSalesManDoctor(
+                    myServices.sharedPreferences.getString("token")).then((value) {
+                  value.data['data'].forEach((item) {
+                    names.add(item['salesman_name']);
+                  });
+                  names.forEach((sellManName) {
+                    dio.DioHelper().sendNotificationForSellsMens(sellManName: sellManName);
+                  });
+                  setState(() {
+                    isLoading = false ;
+                  });
+                });
+              });
+            },
+            child: isLoading
+                ? CircularProgressIndicator.adaptive(
+                    backgroundColor: Colors.white,
+                  )
+                : Text('Start'),
           ),
         ],
       ),

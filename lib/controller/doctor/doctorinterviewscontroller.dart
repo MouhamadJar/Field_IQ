@@ -12,6 +12,7 @@ class DoctorInterviewsController extends GetxController  with StateMixin<dynamic
   late TextEditingController startTime;
   late TextEditingController duration;
   late TextEditingController charges;
+  late TextEditingController maxVisit;
   late TextEditingController sellsmenNumber;
   MyServices myServices = Get.find();
   List<DataInterviewSalesMan> interviewSalesMan = [];
@@ -27,7 +28,8 @@ class DoctorInterviewsController extends GetxController  with StateMixin<dynamic
         'time': startTime.text,
         'duration' : duration.text,
         'price' : charges.text,
-        'kind_of_visite' : typeSelected.toString()
+        'kind_of_visite' : typeSelected.toString(),
+        'max_visit' : maxVisit.text
       }, token: myServices.sharedPreferences.getString('token')).then((value) {
         print(value.toString());
         Get.off(()=> const InterviewsScreen());
@@ -59,6 +61,7 @@ class DoctorInterviewsController extends GetxController  with StateMixin<dynamic
     startTime = TextEditingController();
     duration= TextEditingController();
     charges= TextEditingController();
+    maxVisit= TextEditingController();
     sellsmenNumber= TextEditingController();
     getInterviewSalesMan();
     super.onInit();

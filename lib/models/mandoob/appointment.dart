@@ -22,7 +22,6 @@ class Appointment {
 
   Appointment.fromJson(dynamic json) {
     appointmentId = json['appointment_id'];
-    String tmp = json['time'];
     time = json['time'].toString().characters.first + json['time'].toString().characters.elementAt(1);
     int checker = int.parse(time);
     if (checker > 12) {
@@ -31,7 +30,7 @@ class Appointment {
     } else {
       time = time + ' am';
     }
-    duration = json['duration'].toString().characters.elementAt(3) + json['duration'].toString().characters.elementAt(4);
+    duration = json['duration'];
     price = json['price'];
     kindOfVisite = json['kind_of_visite'];
     day = json['day'];

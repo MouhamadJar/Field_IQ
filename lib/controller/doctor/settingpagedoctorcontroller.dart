@@ -39,7 +39,7 @@ class SettingPageDoctorController extends GetxController
         .then((value) {
       print(value.toString());
       profileModel = DoctorProfileModel.fromJson(value.data);
-      if (profileModel.status == 1) {
+      if (profileModel.isAvailable == 1) {
         print(profileModel.status.toString());
         statusAvailable = true.obs;
         textAvailable = 'Available'.tr.obs;

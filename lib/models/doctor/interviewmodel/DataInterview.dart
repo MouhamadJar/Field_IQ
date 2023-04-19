@@ -1,17 +1,28 @@
+import 'package:flutter/material.dart';
+
 class DataInterview {
   DataInterview({
-      required this.appointmentId,
-      required this.time,
-      required this.duration,
-      required this.price,
-      required this.kindOfVisite,
-      required this.day,
-      required this.dayId,
-      required this.maxVisitsInThisDay,});
+    required this.appointmentId,
+    required this.time,
+    required this.duration,
+    required this.price,
+    required this.kindOfVisite,
+    required this.day,
+    required this.dayId,
+    required this.maxVisitsInThisDay,
+  });
 
   DataInterview.fromJson(dynamic json) {
     appointmentId = json['appointment_id'];
-    time = json['time'];
+    time = json['time'].toString().characters.first +
+        json['time'].toString().characters.elementAt(1);
+    int checker = int.parse(time);
+    if (checker > 12) {
+      checker = checker - 12;
+      time = checker.toString() + ' pm';
+    } else {
+      time = time + ' am';
+    }
     duration = json['duration'];
     price = json['price'];
     kindOfVisite = json['kind_of_visite'];
@@ -19,6 +30,7 @@ class DataInterview {
     dayId = json['day_id'];
     maxVisitsInThisDay = json['max_visits_in_this_day'];
   }
+
   late int appointmentId;
   late String time;
   late String duration;
@@ -40,5 +52,4 @@ class DataInterview {
     map['max_visits_in_this_day'] = maxVisitsInThisDay;
     return map;
   }
-
 }

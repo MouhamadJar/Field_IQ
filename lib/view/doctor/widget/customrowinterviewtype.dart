@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../class/constant/colors.dart';
+import '../../../controller/doctor/doctorinterviewdetailseditcontroller.dart';
 import '../../../controller/doctor/doctorinterviewscontroller.dart';
 
 class CustomRowInterviewType extends StatelessWidget {
@@ -9,7 +10,7 @@ class CustomRowInterviewType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DoctorInterviewsController controller = Get.put(DoctorInterviewsController());
+    DoctorInterviewDetailsEditController controller = Get.put(DoctorInterviewDetailsEditController());
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 15),
       child: Row(
