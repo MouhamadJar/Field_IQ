@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:mandoob/controller/mandoob/api_controller.dart';
+import 'package:mandoob/view/mandoob/screen/home_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../class/component.dart';
 import '../../../models/mandoob/reservation_model.dart';
+import '../../doctor/screen/listwaitiangdetailsdoctor.dart';
 
 class ReservationDetails extends StatelessWidget {
   const ReservationDetails({Key? key, required this.reservation})
@@ -51,7 +54,7 @@ class ReservationDetails extends StatelessWidget {
                 ReservationDetailsRow(
                     value: reservation.price.toString(), title: 'Fees'),
                 ReservationDetailsRow(
-                    value: '${reservation.day}  ${reservation.time}',
+                    value: '${reservation.day}  ${splitTime(reservation.time)}',
                     title: 'Meeting time'),
                 MyButton(
                   title: 'Payment Done',
@@ -63,7 +66,6 @@ class ReservationDetails extends StatelessWidget {
                   SizedBox(
                     child: Text('This is online meet, Contact Doctor in whatsapp'),
                   ),
-
                 GestureDetector(
                   onTap: () {
                     launchWhatsApp(number: reservation.phone);
@@ -78,6 +80,36 @@ class ReservationDetails extends StatelessWidget {
                         ),
                         Text('Contact Doctor in whatsapp'.tr),
                       ],
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: (){
+                    print('\nid: ${reservation.interviewId}');
+                    DioHelper().endInterview(id: reservation.interviewId).then((value) {
+                      Get.offAll(HomeScreen());
+                      Get.snackbar('Done', 'Thanks for Using our app');
+                    },
+                      onError: (error){
+                      print(error.toString());
+                      Get.snackbar('Ops', 'Please check your internet',backgroundColor: Colors.red.withOpacity(0.4));
+                      }
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 16.0,horizontal: 50),
+                    margin: EdgeInsets.symmetric(horizontal: Get.width*.1),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [BoxShadow(color: Colors.grey,blurRadius: 4,offset: Offset(0,3))]
+                    ),
+                    alignment: Alignment.center,
+                    child: Text('End Interview',
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),

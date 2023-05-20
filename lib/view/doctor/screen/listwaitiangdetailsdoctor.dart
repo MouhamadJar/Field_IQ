@@ -22,6 +22,8 @@ class ListWaitingDetailsDoctor extends StatelessWidget {
       );
       await launchUrl(whatsappLaunchUri,mode: LaunchMode.externalApplication);
     }
+
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -64,7 +66,7 @@ class ListWaitingDetailsDoctor extends StatelessWidget {
             ),
             CustomWaitingListDetails(
               text: 'Interview Time'.tr,
-              info: dataInterviewSalesMan.time,
+              info: splitTime(dataInterviewSalesMan.time),
             ),
             CustomWaitingListDetails(
               text: 'Interview Duration'.tr,
@@ -119,4 +121,16 @@ class ListWaitingDetailsDoctor extends StatelessWidget {
       ),
     );
   }
+}
+
+String splitTime (String time) {
+  String result = time.characters.first + time.characters.elementAt(1);
+  int tmp = int.parse(result);
+  if (tmp > 12){
+    tmp = tmp - 12 ;
+    result = tmp.toString() + " pm";
+  }else {
+    result = result + ' am';
+  }
+  return result;
 }

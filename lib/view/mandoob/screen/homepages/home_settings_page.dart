@@ -1,17 +1,22 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:mandoob/class/constant/end_points.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../class/component.dart';
 import '../../../../class/constant/colors.dart';
+import '../../../../class/constant/const.dart';
 import '../../../../class/services/services.dart';
 import '../../../../controller/mandoob/user_controller.dart';
+import '../../../chooseuser.dart';
 import '../../../doctor/widget/customrowlang.dart';
 import '../mandooblogin.dart';
 import '../settings_edit.dart';
 
 class HomeSettingsPage extends GetView<UserController> {
   const HomeSettingsPage({Key? key}) : super(key: key);
+
   void launchWhatsApp() async {
     final Uri whatsappLaunchUri = Uri(
       scheme: 'https',
@@ -19,8 +24,9 @@ class HomeSettingsPage extends GetView<UserController> {
       path: '/9647822283347/',
       query: 'com.whatsapp',
     );
-    await launchUrl(whatsappLaunchUri,mode: LaunchMode.externalApplication);
+    await launchUrl(whatsappLaunchUri, mode: LaunchMode.externalApplication);
   }
+
   @override
   Widget build(BuildContext context) {
     UserController userController = Get.put(UserController());
@@ -36,7 +42,9 @@ class HomeSettingsPage extends GetView<UserController> {
             onPressed: () async {
               MyServices service = Get.put(MyServices());
               await service.sharedPreferences.remove('mToken');
-              Get.offAll(MandoobLogin());
+              await FirebaseMessaging.instance.unsubscribeFromTopic(user.name);
+              kToken = 'noToken';
+              Get.offAll(ChooseUser());
             },
           )
         ],
@@ -137,7 +145,9 @@ class HomeSettingsPage extends GetView<UserController> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 16.0,),
+                  SizedBox(
+                    height: 16.0,
+                  ),
                 ],
               ),
             ),

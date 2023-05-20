@@ -180,19 +180,6 @@ class _SettingsStartMeetsState extends State<SettingsStartMeets> {
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 15),
       child: Row(
         children: [
-          Container(
-            decoration: const ShapeDecoration(
-              shape: CircleBorder(),
-              color: AppColor.secondaryColor,
-            ),
-            height: 8,
-            width: 8,
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Text('Start Meets'.tr),
-          const Spacer(),
           ElevatedButton(
             style: ButtonStyle(
                 backgroundColor:
@@ -204,11 +191,16 @@ class _SettingsStartMeetsState extends State<SettingsStartMeets> {
                 DioHelper.getInterviewSalesManDoctor(
                     myServices.sharedPreferences.getString("token")).then((value) {
                   value.data['data'].forEach((item) {
-                    names.add(item['salesman_name']);
+                    if(item['status'] == 0) {
+                      names.add(item['salesman_name']);
+                    }
                   });
-                  names.forEach((sellManName) {
-                    dio.DioHelper().sendNotificationForSellsMens(sellManName: sellManName);
-                  });
+                  if(names.isNotEmpty) {
+                    names.forEach((sellManName) {
+                      dio.DioHelper().sendNotificationForSellsMens(
+                          sellManName: sellManName);
+                    });
+                  }
                   setState(() {
                     isLoading = false ;
                   });
@@ -216,10 +208,16 @@ class _SettingsStartMeetsState extends State<SettingsStartMeets> {
               });
             },
             child: isLoading
-                ? CircularProgressIndicator.adaptive(
-                    backgroundColor: Colors.white,
-                  )
-                : Text('Start'),
+                ? Center(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: CircularProgressIndicator.adaptive(
+                        backgroundColor: Colors.grey,
+                       valueColor:AlwaysStoppedAnimation<Color>(Colors.white),
+                      ).paddingAll(8.0),
+                  ),
+                )
+                : Text('Start Meetings'.tr),
           ),
         ],
       ),

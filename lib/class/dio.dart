@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' as getx;
 import 'package:mandoob/class/constant/apilink.dart';
 import 'package:get/get.dart' as Getx;
+import 'package:mandoob/class/constant/const.dart';
 
 import 'constant/colors.dart';
 import 'constant/end_points.dart';
@@ -23,7 +24,7 @@ class DioHelper {
 
   static Dio dio = Dio(
     BaseOptions(
-        baseUrl: 'https://aurora-team.com',
+        baseUrl: 'https://field-iraq.com',
         receiveDataWhenStatusError: true,
         headers: {
           "Accept": "application/json",
@@ -32,13 +33,17 @@ class DioHelper {
         }),
   );
 
-  static Future<Response> signUpDoctor({
+  static Future<dynamic> signUpDoctor({
     required Map<String, dynamic> data,
   }) async {
-    return await dio.post(
-      AppLink.SIGNUP,
-      data: FormData.fromMap(data),
-    );
+    try{
+      await dio.post(
+        AppLink.SIGNUP,
+        data: FormData.fromMap(data),
+      );
+    } on DioError catch(error) {
+      print('error is :\n${error.response!.data}');
+    }
   }
 
   static Future<dynamic> loginDoctor({
@@ -81,6 +86,22 @@ class DioHelper {
     return await dio.get(AppLink.HOMEDOCTOR,
         options: Options(
           headers: {'Authorization': 'Bearer $token'},
+        ));
+  }
+
+  static Future<Response> getMaxVisit(String? token) async {
+    return await dio.get(AppLink.GETMAXVISIT,
+        options: Options(
+          headers: {'Authorization': 'Bearer $token'},
+        ));
+  }
+
+  static Future<Response> editMaxVisit(
+      {required Map<String, dynamic> data, required String? token, required int dayId}) async {
+    return await dio.post(AppLink.EDITMAXVISIT+'/$dayId',
+        data: data,
+        options: Options(
+          headers: {'Authorization': 'Bearer $kDoctorToken'},
         ));
   }
 

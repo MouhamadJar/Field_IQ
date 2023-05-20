@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:mandoob/class/constant/const.dart';
 import 'package:mandoob/class/services/services.dart';
 
 import '../../class/dio.dart';
@@ -27,6 +28,7 @@ class DoctorLoginController extends GetxController{
         print(value.data['token']);
         myServices.sharedPreferences.setString('token', value.data['token']);
         myServices.sharedPreferences.setString('step', '1');
+        kDoctorToken = value.data['token'];
         Get.to(() =>  HomeScreenDoctor());
       }).catchError((onError) {
         print(onError.toString());

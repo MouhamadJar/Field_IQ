@@ -42,7 +42,6 @@ class SalesManList extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6),
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 88,
           decoration: const BoxDecoration(
             color: Colors.white,
             boxShadow: [
@@ -64,7 +63,7 @@ class SalesManList extends StatelessWidget {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 20.0, horizontal: 6),
+                      const EdgeInsets.symmetric(vertical: 16.0, horizontal: 6),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

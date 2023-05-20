@@ -10,6 +10,7 @@ class Appointment {
     required this.kindOfVisite,
     required this.day,
     required this.maxVisitsInThisDay,
+    required this.dayId,
   });
 
   late int appointmentId;
@@ -18,6 +19,7 @@ class Appointment {
   late int price;
   late String kindOfVisite;
   late String day;
+  late int dayId;
   late String maxVisitsInThisDay;
 
   Appointment.fromJson(dynamic json) {
@@ -34,6 +36,7 @@ class Appointment {
     price = json['price'];
     kindOfVisite = json['kind_of_visite'];
     day = json['day'];
+    dayId = json['day_id'];
     maxVisitsInThisDay = json['max_visits_in_this_day'];
   }
 
@@ -45,6 +48,7 @@ class Appointment {
     map['price'] = price;
     map['kind_of_visite'] = kindOfVisite;
     map['day'] = day;
+    map['day_id'] = dayId;
     map['max_visits_in_this_day'] = maxVisitsInThisDay;
     return map;
   }

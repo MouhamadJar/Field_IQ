@@ -26,12 +26,10 @@ class HomeScreenDoctor extends StatelessWidget {
         child: Scaffold(
           floatingActionButton: FloatingActionButton(
             backgroundColor: AppColor.secondaryColor,
-            onPressed: () {},
-            child: InkWell(
-                onTap: () {
-                  Get.to(() => const InterviewsScreen());
-                },
-                child: const Icon(Icons.add)),
+            onPressed: () {
+              Get.to(() => const InterviewsScreen());
+            },
+            child: Icon(Icons.add),
           ),
           bottomNavigationBar: CurvedNavigationBar(
             height: 60,

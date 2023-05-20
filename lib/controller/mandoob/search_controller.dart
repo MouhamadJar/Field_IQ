@@ -11,6 +11,7 @@ class SearchController extends GetxController {
   Future<dynamic> getSearchData() async {
     if(cities.isEmpty) {
       await apiController.getCities().then((value) {
+        cities.clear();
       value.data.forEach((city) {
         cities.add(City.fromJson(city));
       });

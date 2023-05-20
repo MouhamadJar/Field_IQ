@@ -40,7 +40,7 @@ class DoctorProfileModel {
   late String phone;
   late String specialization;
   late String image;
-  late String exp;
+  late dynamic exp;
   late String cvv;
   late int status;
   late int isAvailable;

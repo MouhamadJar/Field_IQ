@@ -35,13 +35,11 @@ class SettingsDoctor extends GetView<SettingPageDoctorController> {
                 color: Colors.black,
               ),
               onPressed: () async {
-                await myServices.sharedPreferences.remove(
-                  'token',
-                );
+                await myServices.sharedPreferences.remove('token');
                 await FirebaseMessaging.instance.unsubscribeFromTopic(
-                    controller.profileModel.id.toString());
+                    controller.doctorID.toString());
                 kDoctorToken = 'noToken';
-                Get.offAll(() => const ChooseUser());
+                Get.offAll(ChooseUser());
               },
             )
           ],
@@ -145,7 +143,6 @@ class SettingsDoctor extends GetView<SettingPageDoctorController> {
               CustomWaitingListDetails(
                   text: 'Zain Wallet'.tr, info: controller.profileModel.cvv),
               const SettingsLanguageChanger(),
-              SettingsStartMeets(),
               const SizedBox(
                 height: 50,
               )

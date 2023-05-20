@@ -39,13 +39,12 @@ class HomeScreenController extends GetxController with StateMixin<dynamic> {
   }
 
   Future<void> loadingData({int id =  0,bool isFirst = false}) async {
-    if (cities.isEmpty) {
       await SearchController().getSearchData();
-      cityId.value = cities.first.id;
+      if(id == 0){
+        cityId.value = cities.first.id;
       id = cityId.value;
-    } else {
-      isFirst ? cityId.value = cities.first.id: null;
       }
+
     print(cityId.value.toString());
     apiController.getDoctorsByCity(data: {'city_id': id}).then(
         (value) {
@@ -90,9 +89,9 @@ class HomeScreenController extends GetxController with StateMixin<dynamic> {
   }
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
-    loadingData(isFirst: true);
+      loadingData();
     loadProfileData();
   }
 }

@@ -4,6 +4,7 @@ import 'package:shimmer/shimmer.dart';
 
 import '../models/mandoob/mandoob_model.dart';
 import '../models/mandoob/reservation_model.dart';
+import '../view/doctor/screen/listwaitiangdetailsdoctor.dart';
 import '../view/mandoob/screen/doctor_details.dart';
 import '../view/mandoob/screen/reservation_details.dart';
 import 'constant/colors.dart';
@@ -245,7 +246,7 @@ class DoctorReservationDetailsRow extends StatelessWidget {
                 const Spacer(),
                 SizedBox(
                   width: Get.width * .25,
-                  child: Text(reservation.time),
+                  child: Text(splitTime(reservation.time)),
                 ),
               ],
             ),

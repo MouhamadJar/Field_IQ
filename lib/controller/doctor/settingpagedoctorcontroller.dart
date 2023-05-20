@@ -10,7 +10,7 @@ class SettingPageDoctorController extends GetxController
   RxString textAvailable = 'Unavailable'.tr.obs;
   MyServices myServices = Get.find();
   late DoctorProfileModel profileModel;
-
+  dynamic doctorID = 1;
   void setSelect(bool currentStatus) {
     statusAvailable.value = currentStatus;
     if (currentStatus == true) {
@@ -34,11 +34,12 @@ class SettingPageDoctorController extends GetxController
     });
   }
 
-  getProfile() {
-    DioHelper.doctorProfile(myServices.sharedPreferences.getString('token'))
+  void getProfile() async {
+    await DioHelper.doctorProfile(myServices.sharedPreferences.getString('token'))
         .then((value) {
       print(value.toString());
       profileModel = DoctorProfileModel.fromJson(value.data);
+      doctorID = profileModel.id;
       if (profileModel.isAvailable == 1) {
         print(profileModel.status.toString());
         statusAvailable = true.obs;

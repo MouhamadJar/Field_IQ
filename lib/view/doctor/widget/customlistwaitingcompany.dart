@@ -134,8 +134,8 @@ class WaitingListCompany extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                const Text(
-                  'sunday',
+                Text(
+                  dataInterviewSalesMan.day,
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 14,

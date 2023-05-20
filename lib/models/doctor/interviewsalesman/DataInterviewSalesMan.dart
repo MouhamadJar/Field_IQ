@@ -10,7 +10,9 @@ class DataInterviewSalesMan {
       required this.salesmanNames,
       required this.phone,
       required this.officeName,
-      required this.salesmanCompany,});
+      required this.salesmanCompany,
+      required this.status,
+  });
 
   DataInterviewSalesMan.fromJson(dynamic json) {
     time = json['time'];
@@ -24,6 +26,7 @@ class DataInterviewSalesMan {
     phone = json['phone'];
     officeName = json['office_name'];
     salesmanCompany = json['salesman_company'];
+    status = json['status'];
   }
   late String time;
   late String duration;
@@ -36,6 +39,7 @@ class DataInterviewSalesMan {
   late String phone;
   late String officeName;
   late String salesmanCompany;
+  late int status;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

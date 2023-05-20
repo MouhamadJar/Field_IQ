@@ -143,6 +143,8 @@ class DoctorDetails extends StatelessWidget {
                                     return ReserveButton(
                                       onTap: () {
                                         controller.reserve(
+                                          dayId: doctorDetails
+                                              .doctorAppointments[index].dayId,
                                           amount: doctorDetails
                                               .doctorAppointments[index].price,
                                           appointmentId: doctorDetails

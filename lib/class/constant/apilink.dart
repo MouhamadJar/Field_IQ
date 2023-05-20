@@ -1,19 +1,18 @@
 class AppLink {
-  static String LOGIN = '/Mandoob/public/api/doctor/login';
-  static String SIGNUP = '/Mandoob/public/api/doctor/send-order';
+  static String LOGIN = '/api/doctor/login';
+  static String SIGNUP = '/api/doctor/send-order';
   static String LOGOUT = '';
-  static String CITY = '/Mandoob/public/api/get_cities';
-  static String HOMEDOCTOR = '/Mandoob/public/api/doctor/home';
-  static String AVAILABLE = '/Mandoob/public/api/doctor/appointment-status';
-  static String DOCTORPOFILE = '/Mandoob/public/api/doctor-profile';
-  static String UPDATEPROFILE = '/Mandoob/public/api/doctor-update-profile';
-  static String GETINTERVIEW = '/Mandoob/public/api/doctor/appointment-get';
-  static String GETINTERVIEWSALESMAN = '/Mandoob/public/api/doctor/my-interviews';
-  static String GETDAYS = '/Mandoob/public/api/doctor/get-days';
-  static String ADDINTERVIEW = '/Mandoob/public/api/doctor/appointment-create';
-  //static String EDITINTERVIEW = '/Mandoob/public/api/doctor/appointment-update';
-
-
-  static String GETSALESMANBYCOMPANY(String company) => '/Mandoob/public/api/doctor/get-salesman?company=$company';
-  static String EDITINTERVIEW(int id) => '/Mandoob/public/api/doctor/appointment-update/$id';
+  static String CITY = '/api/get_cities';
+  static String HOMEDOCTOR = '/api/doctor/home';
+  static String AVAILABLE = '/api/doctor/appointment-status';
+  static String DOCTORPOFILE = '/api/doctor-profile';
+  static String UPDATEPROFILE = '/api/doctor-update-profile';
+  static String GETINTERVIEW = '/api/doctor/appointment-get';
+  static String GETINTERVIEWSALESMAN = '/api/doctor/my-interviews';
+  static String GETDAYS = '/api/doctor/get-days';
+  static String ADDINTERVIEW = '/api/doctor/appointment-create';
+  static String GETMAXVISIT = '/api/doctor/get-num-visit';
+  static String EDITMAXVISIT = '/api/doctor/num-visit-update';
+  static String GETSALESMANBYCOMPANY(String company) => '/api/doctor/get-salesman?company=$company';
+  static String EDITINTERVIEW(int id) => '/api/doctor/appointment-update/$id';
 }

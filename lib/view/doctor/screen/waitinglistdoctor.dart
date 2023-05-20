@@ -7,6 +7,7 @@ import '../../../class/constant/colors.dart';
 import '../../../class/constant/images.dart';
 import '../../../controller/doctor/doctorinterviewscontroller.dart';
 import '../widget/customlistwaitingcompany.dart';
+import '../widget/customrowlang.dart';
 import 'finalinterviews.dart';
 
 class WaitingListDoctor extends GetView<DoctorInterviewsController> {
@@ -39,20 +40,9 @@ class WaitingListDoctor extends GetView<DoctorInterviewsController> {
                 color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
           ),
           centerTitle: true,
+
           actions: [
-            Center(
-              child: GetBuilder<DoctorInterviewsController>(
-                builder: (control) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      controller.interviewSalesMan.length.toString(),
-                      style: TextStyle(color: AppColor.black,fontSize: 20),
-                    ),
-                  );
-                }
-              ),
-            ),
+            SettingsStartMeets(),
           ],
         ),
         body: Padding(

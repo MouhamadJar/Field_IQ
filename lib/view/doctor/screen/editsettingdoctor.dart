@@ -16,9 +16,11 @@ import 'dart:io';
 
 class EditSettingDoctor extends StatelessWidget {
   final DoctorProfileModel doctorProfileModel;
-    EditSettingDoctor({Key? key, required this.doctorProfileModel}) : super(key: key);
 
-   XFile? imagesID;
+  EditSettingDoctor({Key? key, required this.doctorProfileModel})
+      : super(key: key);
+
+  XFile? imagesID;
 
   @override
   Widget build(BuildContext context) {
@@ -86,60 +88,69 @@ class EditSettingDoctor extends StatelessWidget {
                     text: 'Specialization'.tr,
                   ),
                   const CustomRowGovEditSetting(),
-                  isDelete == false?
-                  CustomRowImageEditSetting(text: 'Clinic Certificate'.tr, onTap: (){
-
-                    // showToast("Clinic Certificate is required".tr, gravity: Toast.bottom, duration: 7);
-                    isDelete = true;
-                    controller.update();
-
-                  }, urlImage: doctorProfileModel.image,):
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 25),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 13,
-                          height: 13,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle, color: AppColor.secondaryColor),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Text(
-                            'Clinic Certificate'.tr,
-                            style: const TextStyle(fontSize: 14, color: Colors.black),
-                          ),
-                        ),
-                        const Spacer(),
-                        imagesID == null
-                            ? InkWell(
-                          onTap: () async {
-                            imagesID = await controller.selectMultipleImageID();
+                  isDelete == false
+                      ? CustomRowImageEditSetting(
+                          text: 'Clinic Certificate'.tr,
+                          onTap: () {
+                            // showToast("Clinic Certificate is required".tr, gravity: Toast.bottom, duration: 7);
+                            isDelete = true;
                             controller.update();
                           },
-                          child: Container(
-                              width: 228,
-                              height: 134,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(color: AppColor.hintText)),
-                              child: const Icon(
-                                Icons.add_a_photo,
-                                color: AppColor.primaryColor,
-                                size: 32,
-                              )),
+                          urlImage: doctorProfileModel.image,
                         )
-                            : SizedBox(
-                            width: 228,
-                            height: 134,
-                            child: Image.file(
-                              File(controller.imagesID!.path),
-                            ))
-                      ],
-                    ),
-                  ),
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 25),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 13,
+                                height: 13,
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColor.secondaryColor),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0),
+                                child: Text(
+                                  'Clinic Certificate'.tr,
+                                  style: const TextStyle(
+                                      fontSize: 14, color: Colors.black),
+                                ),
+                              ),
+                              const Spacer(),
+                              imagesID == null
+                                  ? InkWell(
+                                      onTap: () async {
+                                        imagesID = await controller
+                                            .selectMultipleImageID();
+                                        controller.update();
+                                      },
+                                      child: Container(
+                                          width: 228,
+                                          height: 134,
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              border: Border.all(
+                                                  color: AppColor.hintText)),
+                                          child: const Icon(
+                                            Icons.add_a_photo,
+                                            color: AppColor.primaryColor,
+                                            size: 32,
+                                          )),
+                                    )
+                                  : SizedBox(
+                                      width: 228,
+                                      height: 134,
+                                      child: Image.file(
+                                        File(controller.imagesID!.path),
+                                      ))
+                            ],
+                          ),
+                        ),
                   CustomRowEditSetting(
                     hintText: doctorProfileModel.cvv,
                     myController: controller.phone,
@@ -147,8 +158,20 @@ class EditSettingDoctor extends StatelessWidget {
                     isNumber: true,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20),
-                    child: CustomButton(text: 'Save'.tr, onTap: () { controller.updateProfile(doctorProfileModel.fullName,doctorProfileModel.phone, doctorProfileModel.specialization, doctorProfileModel.exp, doctorProfileModel.cvv,  ); },),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 25.0, vertical: 20),
+                    child: CustomButton(
+                      text: 'Save'.tr,
+                      onTap: () {
+                        controller.updateProfile(
+                          doctorProfileModel.fullName,
+                          doctorProfileModel.phone,
+                          doctorProfileModel.specialization,
+                          '',
+                          doctorProfileModel.cvv,
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),

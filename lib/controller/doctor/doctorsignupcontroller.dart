@@ -25,7 +25,7 @@ class DoctorSignUpController extends GetxController {
   late final XFile imagesID;
   late final File ID;
   List<CityModel> cityList = [];
-  final Rx<CityModel> cityTypeSelected = CityModel(id: 1, name: '').obs;
+  final Rx<CityModel> cityTypeSelected = CityModel(id: 5, name: '').obs;
   RxBool isLoading = true.obs;
   MyServices myServices = Get .find();
 
@@ -71,7 +71,8 @@ class DoctorSignUpController extends GetxController {
           dismissDirection: DismissDirection.horizontal,
           forwardAnimationCurve: Curves.easeOutBack,
         );
-      }).catchError((onError) {
+      })
+          .catchError((onError) {
         print(onError);
         Get.defaultDialog(
           title: 'Alert '.tr,
@@ -89,6 +90,7 @@ class DoctorSignUpController extends GetxController {
         cityList.add(CityModel.fromJson(city));
       });
       cityTypeSelected.value.name = cityList.first.name;
+      cityTypeSelected.value.id = cityList.first.id;
       print(cityList.first.name);
       isLoading = false.obs;
       update();

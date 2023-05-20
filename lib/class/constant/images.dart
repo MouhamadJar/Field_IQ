@@ -14,5 +14,5 @@ class AppImages {
   static const String searchIcoon = '$rootImages/search_icon.svg';
 
 
-  static const String imageUrl = 'https://aurora-team.com/Mandoob/public/storage';
+  static const String imageUrl = 'https://field-iraq.com/images';
 }

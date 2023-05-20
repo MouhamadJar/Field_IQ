@@ -139,6 +139,7 @@ class MandoobSignUp extends StatelessWidget {
                                       'please pass valid data',
                                       backgroundColor: Colors.redAccent.withOpacity(0.5),
                                     );
+                                    print(error.toString());
                                     controller.isLoading.value = !controller.isLoading.value;
                                     controller.update();
                                   });

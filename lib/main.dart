@@ -8,12 +8,13 @@ import 'class/services/services.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialServices();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.white,
-    statusBarColor: Colors.white,
-    systemNavigationBarDividerColor: Colors.white,
-    statusBarIconBrightness: Brightness.dark,
-  ),
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.white,
+      statusBarColor: Colors.white,
+      systemNavigationBarDividerColor: Colors.white,
+      statusBarIconBrightness: Brightness.dark,
+    ),
   );
   await initFireBase();
   runApp(MyApp());
