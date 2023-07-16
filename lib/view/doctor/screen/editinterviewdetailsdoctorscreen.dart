@@ -87,7 +87,7 @@ class EditInterviewDetailsDoctorScreen
                       CustomRowInterview(
                         hintText: dataInterview.price.toString(),
                         myController: controller.charges,
-                        text: 'Charges'.tr,
+                        text: 'Price'.tr,
                         isNumber: true,
                       ),
                       // CustomRowInterview(hintText: 'Sellsmen Number'.tr, myController: controller.sellsmenNumber, text: 'Sellsmen Number'.tr, isNumber: true,),

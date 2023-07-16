@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -5,7 +7,11 @@ import 'package:mandoob/controller/doctor/editsettingdoctorcontroller.dart';
 import 'package:mandoob/view/doctor/screen/homescreen.dart';
 import 'package:toast/toast.dart';
 import '../../../class/constant/colors.dart';
+import '../../../class/constant/const.dart';
+import '../../../class/services/services.dart';
+import '../../../controller/mandoob/api_controller.dart';
 import '../../../models/doctor/doctorprofile/DoctorProfileModel.dart';
+import '../../splashscreen.dart';
 import '../widget/customrowgoveditsetting.dart';
 import '../widget/customrowimageeditsetting.dart';
 import '../widget/customrowlang.dart';
@@ -81,6 +87,7 @@ class EditSettingDoctor extends StatelessWidget {
                     myController: controller.phone,
                     text: 'Phone'.tr,
                     isNumber: true,
+                    isNumberPhone: true,
                   ),
                   CustomRowEditSetting(
                     hintText: doctorProfileModel.specialization,
@@ -153,9 +160,46 @@ class EditSettingDoctor extends StatelessWidget {
                         ),
                   CustomRowEditSetting(
                     hintText: doctorProfileModel.cvv,
-                    myController: controller.phone,
-                    text: 'Zain Wallet'.tr,
+                    myController: controller.cardNumber,
+                    text: !isAcceptedByApple ? 'Card number':'Zain Wallet'.tr,
                     isNumber: true,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 25.0, vertical: 20),
+                    child: CustomButton(
+                      text: 'Delete Account'.tr,
+                      onTap: () {
+                        controller.isLoading.value = true;
+                        controller.update();
+                        try {
+                          DioHelper().deleteDoctorAccount().then((value) async {
+                            controller.isLoading.value = false;
+                            controller.update();
+                            Get.snackbar(
+                                'Done', 'Account deleted Successfully');
+                            Get.offAll(SplashScreen());
+                            MyServices service = Get.put(MyServices());
+                            kDoctorToken = 'noToken';
+                            await service.sharedPreferences.remove('mToken');
+                            await FirebaseMessaging.instance
+                                .unsubscribeFromTopic(user.name);
+                          }, onError: (error) {
+                            controller.isLoading.value = false;
+                            controller.update();
+                            print(error.toString());
+                            Get.snackbar(
+                              'Ops',
+                              'Please Check your connection',
+                              backgroundColor:
+                                  Colors.redAccent.withOpacity(0.5),
+                            );
+                          });
+                        } on DioError catch (error) {
+                          print(error.message);
+                        }
+                      },
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -165,7 +209,7 @@ class EditSettingDoctor extends StatelessWidget {
                       onTap: () {
                         controller.updateProfile(
                           doctorProfileModel.fullName,
-                          doctorProfileModel.phone,
+                          '+964${doctorProfileModel.phone}',
                           doctorProfileModel.specialization,
                           '',
                           doctorProfileModel.cvv,

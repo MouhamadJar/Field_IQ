@@ -8,14 +8,6 @@ import 'class/services/services.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialServices();
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.white,
-      statusBarColor: Colors.white,
-      systemNavigationBarDividerColor: Colors.white,
-      statusBarIconBrightness: Brightness.dark,
-    ),
-  );
   await initFireBase();
   runApp(MyApp());
 }
@@ -26,9 +18,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        title: 'Field IQ',
-        translations: MyTranslation(),
-        debugShowCheckedModeBanner: false,
-        home: SafeArea(child: const SplashScreen()));
+      title: 'Field IQ',
+      translations: MyTranslation(),
+      debugShowCheckedModeBanner: false,
+      home: SafeArea(
+        child: const SplashScreen(),
+      ),
+    );
   }
 }

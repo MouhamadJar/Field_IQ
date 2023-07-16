@@ -9,6 +9,7 @@ class CustomRowEditSetting extends StatelessWidget {
   final IconData? iconData;
   final String text;
   final bool? isNumber;
+  final bool? isNumberPhone;
   final bool? isIcon;
   final void Function()? onTap;
 
@@ -19,6 +20,7 @@ class CustomRowEditSetting extends StatelessWidget {
       this.obscureText,
       required this.text,
       this.isNumber,
+      this.isNumberPhone,
       this.onTap, this.iconData, this.isIcon, })
       : super(key: key);
 
@@ -60,6 +62,7 @@ class CustomRowEditSetting extends StatelessWidget {
                     width: 1.0,
                   ),
                 ),
+                prefix: isNumberPhone != null ? Text('+964') : null ,
                 focusedBorder: OutlineInputBorder(
                   borderSide: const BorderSide(width: 1, color: AppColor.black),
                   borderRadius: BorderRadius.circular(5.0),

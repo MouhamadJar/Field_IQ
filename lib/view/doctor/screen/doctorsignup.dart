@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mandoob/controller/doctor/doctorsignupcontroller.dart';
 import 'package:mandoob/view/doctor/screen/doctorlogin.dart';
 import '../../../class/constant/colors.dart';
+import '../../../class/constant/const.dart';
 import '../../../class/constant/images.dart';
 import '../widget/customrowgov.dart';
 import '../widget/customrowlang.dart';
@@ -21,13 +22,11 @@ class DoctorSignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     Get.put(DoctorSignUpController());
     ToastContext().init(context);
     void showToast(String msg, {int? duration, int? gravity}) {
       Toast.show(msg, duration: duration, gravity: gravity);
     }
-
 
     return GestureDetector(
       onTap: () {
@@ -95,7 +94,8 @@ class DoctorSignUp extends StatelessWidget {
                       child: Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
                             child: Text(
                               'Clinic Certificate'.tr,
                               style: const TextStyle(
@@ -106,15 +106,16 @@ class DoctorSignUp extends StatelessWidget {
                           imagesID == null
                               ? InkWell(
                                   onTap: () async {
-                                    imagesID =
-                                        await controller.selectMultipleImageID();
+                                    imagesID = await controller
+                                        .selectMultipleImageID();
                                   },
                                   child: Container(
-                                      width: 228,
-                                      height: 134,
+                                      width: Get.width*.2,
+                                      height: 130,
                                       decoration: BoxDecoration(
                                           color: Colors.white,
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           border: Border.all(
                                               color: AppColor.hintText)),
                                       child: const Icon(
@@ -124,16 +125,17 @@ class DoctorSignUp extends StatelessWidget {
                                       )),
                                 )
                               : SizedBox(
-                                  width: 228,
-                                  height: 134,
+                                  width: Get.width*.50,
+                                  height: 100,
                                   child: Image.file(
-                                    File(controller.imagesID.path),
+                                    File(controller.imagesID.path,),
+                                    fit: BoxFit.cover,
                                   ))
                         ],
                       ),
                     ),
                     CustomRowLoginCard(
-                      text: 'Zain Wallet'.tr,
+                      text:isAcceptedByApple ? 'Zain wallet': 'Card number'.tr,
                       myController: controller.cardNumber,
                     ),
                     const CustomRowLang(),
@@ -142,11 +144,11 @@ class DoctorSignUp extends StatelessWidget {
                       child: CustomButton(
                         text: 'Signup'.tr,
                         onTap: () {
-                            if (controller.formState.currentState!.validate()) {
+                          if (controller.formState.currentState!.validate()) {
                             if (imagesID == null) {
-                              showToast("Clinic Certificate is required".tr, gravity: Toast.bottom, duration: 7);
-                            }
-                            else{
+                              showToast("Clinic Certificate is required".tr,
+                                  gravity: Toast.bottom, duration: 7);
+                            } else {
                               controller.signUp();
                             }
                           }
@@ -156,13 +158,17 @@ class DoctorSignUp extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
-                        onTap: (){
-                          Get.to(()=> DoctorLogin());
+                        onTap: () {
+                          Get.to(() => DoctorLogin());
                         },
-                        child: const Text('Or Login',style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: AppColor.primaryColor,
-                        ),),),
+                        child: const Text(
+                          'Or Login',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: AppColor.primaryColor,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

@@ -10,3 +10,4 @@ List<Doctor> searchResults = [];
 String kLanguage = '';
 String kDoctorToken = '';
 late SellManModel user ;
+bool isAcceptedByApple = true;

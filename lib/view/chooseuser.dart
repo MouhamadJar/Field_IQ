@@ -67,7 +67,7 @@ class ChooseUser extends StatelessWidget {
                       children: [
                         CustomContainer(
                           backGround: AppColor.primaryColor,
-                          text: 'SellsMan'.tr,
+                          text: isAcceptedByApple ? 'medical.rep':'SellsMan'.tr,
                           color: Colors.white,
                           iconData: Icons.person,
                           onTap: () {

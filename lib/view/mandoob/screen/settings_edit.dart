@@ -1,9 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mandoob/view/splashscreen.dart';
 import '../../../class/component.dart';
 import '../../../class/constant/colors.dart';
 import '../../../class/constant/const.dart';
+import '../../../class/constant/end_points.dart';
+import '../../../class/services/services.dart';
 import '../../../controller/mandoob/api_controller.dart';
 import '../../../controller/mandoob/setting_controller.dart';
 import '../../doctor/widget/custoombutton.dart';
@@ -35,7 +39,7 @@ class SettingsEdit extends GetView<SettingController> {
 
   @override
   Widget build(BuildContext context) {
- Get.put(SettingController());
+    Get.put(SettingController());
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -236,6 +240,7 @@ class SettingsEdit extends GetView<SettingController> {
                             textAlignVertical: TextAlignVertical.bottom,
                             decoration: const InputDecoration(
                               isDense: true,
+                              prefix: Text('+964'),
                               contentPadding: EdgeInsets.all(5),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide.none,
@@ -435,7 +440,7 @@ class SettingsEdit extends GetView<SettingController> {
                     //       decoration: const ShapeDecoration(
                     //         shape: CircleBorder(),
                     //         color: AppColor.secondaryColor,
-                    //       ),
+//       ),
                     //       height: 8,
                     //       width: 8,
                     //     ),
@@ -543,6 +548,50 @@ class SettingsEdit extends GetView<SettingController> {
                           ? const CustomButtonShimmer()
                           : MyButton(
                               hasShadow: true,
+                              title: 'Delete Account',
+                              buttonColor: Colors.red,
+                              onTap: () {
+                                controller.isLoading.value = true;
+                                controller.update();
+                                try {
+                                  DioHelper().deleteMandoobAccount().then(
+                                      (value) async {
+                                    controller.isLoading.value = false;
+                                    controller.update();
+                                    Get.snackbar(
+                                        'Done', 'Account deleted Successfully');
+                                    Get.offAll(SplashScreen());
+                                    MyServices service = Get.put(MyServices());
+                                    kToken = 'noToken';
+                                    await service.sharedPreferences
+                                        .remove('mToken');
+                                    await FirebaseMessaging.instance
+                                        .unsubscribeFromTopic(user.name);
+                                  }, onError: (error) {
+                                    controller.isLoading.value = false;
+                                    controller.update();
+                                    print(error.toString());
+                                    Get.snackbar(
+                                      'Ops',
+                                      'Please Check your connection',
+                                      backgroundColor:
+                                          Colors.redAccent.withOpacity(0.5),
+                                    );
+                                  });
+                                } on DioError catch (error) {
+                                  print(error.message);
+                                }
+                              },
+                            ),
+                    ),
+                    SizedBox(
+                      height: 24,
+                    ),
+                    Obx(
+                      () => controller.isLoading.value
+                          ? const CustomButtonShimmer()
+                          : MyButton(
+                              hasShadow: true,
                               title: 'Save Changes',
                               buttonColor: AppColor.secondaryColor,
                               onTap: () {
@@ -556,7 +605,7 @@ class SettingsEdit extends GetView<SettingController> {
                                       specialization:
                                           specializationController.text,
                                       cityId: user.cityId,
-                                      phone: phoneNumberController.text,
+                                      phone: '+964${phoneNumberController.text}',
                                       companyName: companyNameController.text,
                                       names: subNameController.text,
                                       officeName: officeNameController.text,
@@ -571,7 +620,7 @@ class SettingsEdit extends GetView<SettingController> {
                                       controller.update();
                                       controller.reInitUserData(
                                         names: nameController.text,
-                                        phone: phoneNumberController.text,
+                                        phone: '+964${phoneNumberController.text}',
                                         specialization:
                                             specializationController.text,
                                         name: nameController.text,
@@ -605,7 +654,7 @@ class SettingsEdit extends GetView<SettingController> {
                                       controller.update();
                                       controller.reInitUserData(
                                         names: nameController.text,
-                                        phone: phoneNumberController.text,
+                                        phone: '+964${phoneNumberController.text}',
                                         specialization:
                                             specializationController.text,
                                         name: nameController.text,

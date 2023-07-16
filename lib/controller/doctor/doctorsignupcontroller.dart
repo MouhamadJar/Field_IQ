@@ -47,7 +47,7 @@ class DoctorSignUpController extends GetxController {
         'city_id': cityTypeSelected.value.id.toString(),
         'payment_method_id': '1',
         'full_name': name.text,
-        'phone': phone.text,
+        'phone': '+964${phone.text}',
         'specialization': specialization.text,
         'password': password.text,
         'exp': exp.text,

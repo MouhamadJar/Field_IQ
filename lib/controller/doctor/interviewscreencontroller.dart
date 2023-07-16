@@ -20,7 +20,7 @@ class InterviewScreenController extends GetxController
       });
       print('\nEnter Get max');
       DioHelper.getMaxVisit(kDoctorToken).then((value) {
-        print(value.data.toString());
+        print(value.data.toString()+'suiiiiii');
 
         Days.addMaxVisits(value.data, days);
         change('value', status: RxStatus.success());

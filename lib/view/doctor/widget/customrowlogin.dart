@@ -10,6 +10,7 @@ class CustomRowLogin extends StatelessWidget {
   final bool obscureText;
   final String text;
   final bool? isNumber;
+  final bool? isNumberPhone;
   final bool? isIcon;
   final void Function()? onTap;
   final FocusNode? passwordFocusNode;
@@ -24,6 +25,7 @@ class CustomRowLogin extends StatelessWidget {
       required this.text,
       this.isIcon,
       this.isNumber,
+      this.isNumberPhone,
       this.onTap,
       this.passwordFocusNode,
       this.isUserName = false})
@@ -65,6 +67,7 @@ class CustomRowLogin extends StatelessWidget {
                   obscureText == null || obscureText == false ? false : true,
               decoration: InputDecoration(
                   isDense: true,
+                  prefix: isNumberPhone != null ? Text('+964') : null,
                   contentPadding:
                      const  EdgeInsets.symmetric(vertical: 10, horizontal: 8),
                   enabledBorder: OutlineInputBorder(

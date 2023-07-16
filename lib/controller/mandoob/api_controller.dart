@@ -30,6 +30,41 @@ class DioHelper {
           "Connection": "keep-alive",
         }),
   );
+  Future<Response> deleteDoctorAccount() async {
+    return await dio.get(
+      '/doctor-delete-by',
+      options: Options(
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $kDoctorToken',
+          }
+      ),
+    );
+  }
+  Future<Response> isAcceptedByApple() async {
+    return await dio.get(
+      '/turn',
+      options: Options(
+          headers: {
+            'Accept': 'application/json',
+          }
+      ),
+    );
+  }
+
+
+
+  Future<Response> deleteMandoobAccount() async {
+    return await dio.get(
+      '/salesman-delete-by',
+      options: Options(
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $kToken',
+          }
+      ),
+    );
+  }
 
   Future<Response> login({
     required Map<String, dynamic> data,

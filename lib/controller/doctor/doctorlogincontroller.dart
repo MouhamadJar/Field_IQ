@@ -21,7 +21,7 @@ class DoctorLoginController extends GetxController{
   login(){
     if (formState.currentState!.validate()) {
       DioHelper.loginDoctor(data: {
-        'phone': phone.text,
+        'phone': '+964${phone.text}',
         'password': password.text,
       }).then((value) {
         print(value.toString());

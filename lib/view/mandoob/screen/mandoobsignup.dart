@@ -47,7 +47,7 @@ class MandoobSignUp extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 52.0),
                             child: Center(
                               child: Text(
-                                'Login'.tr,
+                                'Signup'.tr,
                                 style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
@@ -93,7 +93,7 @@ class MandoobSignUp extends StatelessWidget {
                           ),
                           CustomRowLogin(
                             myController: controller.substancesnames,
-                            text: 'Substances Names'.tr,
+                            text: 'Substances'.tr,
                             hintText: 'Substances Names'.tr,
                           ),
                           const CustomRowLang(),
@@ -114,7 +114,7 @@ class MandoobSignUp extends StatelessWidget {
                                       'company':
                                       controller.companyName.text,
                                       'name': controller.name.text,
-                                      'phone': controller.phone.text,
+                                      'phone': '+964${controller.phone.text}',
                                       'office_name':
                                       controller.officename.text,
                                       'specialization': 'specialization',

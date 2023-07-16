@@ -141,7 +141,7 @@ class SettingsDoctor extends GetView<SettingPageDoctorController> {
                 urlImage: controller.profileModel.image,
               ),
               CustomWaitingListDetails(
-                  text: 'Zain Wallet'.tr, info: controller.profileModel.cvv),
+                  text: !isAcceptedByApple ? 'Card number' :'Zain Wallet'.tr, info: controller.profileModel.cvv),
               const SettingsLanguageChanger(),
               const SizedBox(
                 height: 50,

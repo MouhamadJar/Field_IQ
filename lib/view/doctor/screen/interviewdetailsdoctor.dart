@@ -62,7 +62,7 @@ class InterviewDetailsDoctorScreen extends StatelessWidget {
             CustomInterviewDetails(text: 'Start Time'.tr, info: dataInterview.time,),
             CustomInterviewDetails(text: 'Duration'.tr, info: dataInterview.duration,),
             CustomInterviewDetails(text: 'Interview Type'.tr, info: dataInterview.kindOfVisite,),
-            CustomInterviewDetails(text: 'Charges'.tr, info: dataInterview.price.toString(),),
+            CustomInterviewDetails(text: 'Price'.tr, info: dataInterview.price.toString(),),
             CustomInterviewDetails(text: 'Sellsmen Number'.tr, info: dataInterview.maxVisitsInThisDay,),
 
 

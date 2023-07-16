@@ -30,8 +30,8 @@ class CustomImageSetting extends StatelessWidget {
           ),
           const Spacer(),
           Container(
-            width: 180,
-            height: 134,
+            width: 150,
+            height: 130,
             decoration:const  BoxDecoration(
               color: AppColor.silver,
 
